@@ -25,9 +25,8 @@ echo $2 | perl -we 'BEGIN { @k = unpack "C*", pack "H*", "1734516E8BA8C5E2FF1C39
 sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -restart -agent -console
 sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate
 
-#install ngrok
-brew install --cask ngrok
+# install cloudflare tunnel
+brew install cloudflared
 
-#configure ngrok and start it
-ngrok authtoken $3
-ngrok tcp 5900 &
+# start tunnel (TCP)
+cloudflared tunnel --url tcp://localhost:5900 &
